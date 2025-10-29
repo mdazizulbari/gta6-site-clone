@@ -33,11 +33,36 @@ const Hero = () => {
         scale: 1,
         ease: "power1.inOut",
       })
-      .to(".mask-wrapper", {
-        // maskSize: maskSize,
-        maskSize,
-        ease: "power1.inOut",
-      }),"<"
+      .to(
+        ".mask-wrapper",
+        {
+          // maskSize: maskSize,
+          maskSize,
+          ease: "power1.inOut",
+        },
+        "<"
+      )
+      .to(".mask-wrapper", { opacity: 0 })
+      .to(
+        ".overlay-logo",
+        {
+          opacity: 1,
+          onComplete: () => {
+            gsap.to(".overlay-logo", { opacity: 0 });
+          },
+        },
+        "<"
+      )
+      .to(
+        ".entrance-message",
+        {
+          duration: 1,
+          ease: "power1.inOut",
+          maskImage:
+            "radial-gradient(circle at 50% 0vh, black 50%, transparent 100%)",
+        },
+        "<"
+      );
   });
 
   return (
@@ -70,7 +95,7 @@ const Hero = () => {
           />
         </div>
 
-        <div className="fale-logo-wrapper">
+        <div className="fake-logo-wrapper">
           <img
             src="/images/big-hero-text.svg"
             alt="logo"
